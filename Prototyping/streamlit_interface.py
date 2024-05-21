@@ -1,12 +1,14 @@
 import streamlit as st
 from ffmpy import FFmpeg
+from nltk.tokenize import word_tokenize
+from nltk import pos_tag, ne_chunk
 import whisper
 model = whisper.load_model("base")
 import os
 basepath = os.path.dirname(__name__)
 
 st.title("Video Transcriber")
-genre = st.radio("What's your favorite movie genre",
+genre = st.radio("What language should be used for transcription?",
 ["English", "Japanese"],
 captions = ["Transcribe video into English text", "動画を日本語テキストに書き写す"])
 # st.write(genre)
@@ -37,3 +39,15 @@ if uploaded_file is not None:
         print(result["text"])
         st.header("Transcribed text:")
         st.write(result["text"])
+
+        tokens = word_tokenize(result["text"])
+        tagged_words = pos_tag(tokens)
+        named_entities = ne_chunk(tagged_words)
+        chunks = []
+        for chunk in named_entities:
+            if hasattr(chunk, 'label'):
+                print(chunk.label(), ' '.join(c[0] for c in chunk))
+                chunks.append(chunk.label() + " " + ' '.join(c[0] for c in chunk))
+        st.header("Named Entities:")
+        st.write(chunks)
+        # st.write(named_entities)
