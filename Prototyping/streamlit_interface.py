@@ -32,7 +32,6 @@ if uploaded_file is not None:
 
     print(ff.cmd)
     ff.run()
-    # st.write(audio_path)
 
     if os.path.exists(audio_path):
         result = model.transcribe(audio_path, language=codes[genre])
