@@ -1,11 +1,6 @@
 import os, typing
 from dotenv import load_dotenv
 load_dotenv()
-
-# This example requires environment variables named "LANGUAGE_KEY" and "LANGUAGE_ENDPOINT"
-# language_key = str(os.environ.get('LANGUAGE_KEY'))
-# language_endpoint = str(os.environ.get('LANGUAGE_ENDPOINT'))
-
 from azure.ai.textanalytics import TextAnalyticsClient, RecognizeEntitiesResult
 from azure.core.credentials import AzureKeyCredential
 
@@ -13,15 +8,23 @@ endpoint = os.environ["LANGUAGE_ENDPOINT"]
 key = os.environ["LANGUAGE_KEY"]
 
 text_analytics_client = TextAnalyticsClient(endpoint=endpoint, credential=AzureKeyCredential(key))
-reviews = [
-    """I work for Foo Company, and we hired Contoso for our annual founding ceremony. The food
-    was amazing and we all can't say enough good words about the quality and the level of service.""",
-]
+# reviews = ["Hey, the fellow travelers Mark here with Walters World and say we're here in Toronto, Canada."
+# , "And today we're going to talk about are some of the domes that tours should know before they come to Toronto"
+# , "so they can have a great time. And my first dump for you is don't add that second tee to Toronto"]
+reviews = []
+with open("Output.txt", "r") as f:
+    for line in f:
+        reviews.append(line.strip())
+# print(reviews)
+results = []
 
-result: list[RecognizeEntitiesResult] = text_analytics_client.recognize_entities(reviews)
-result: list[RecognizeEntitiesResult] = [review for review in result if not review.is_error]
+for i in range(0, len(reviews), 5):
+    k = min(i + 5, len(reviews))
+    result = text_analytics_client.recognize_entities(reviews[i:k])
+    result = [review for review in result if not review.is_error]
+    results += result
 
-for review in result:
+for review in results:
     print(review.entities)
     for entity in review.entities:
         print(f"Entity: '{entity.text}' has category '{entity.category}'")
