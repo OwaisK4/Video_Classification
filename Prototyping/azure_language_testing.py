@@ -8,13 +8,13 @@ endpoint = os.environ["LANGUAGE_ENDPOINT"]
 key = os.environ["LANGUAGE_KEY"]
 
 text_analytics_client = TextAnalyticsClient(endpoint=endpoint, credential=AzureKeyCredential(key))
-# reviews = ["Hey, the fellow travelers Mark here with Walters World and say we're here in Toronto, Canada."
-# , "And today we're going to talk about are some of the domes that tours should know before they come to Toronto"
-# , "so they can have a great time. And my first dump for you is don't add that second tee to Toronto"]
-reviews = []
-with open("Output.txt", "r") as f:
-    for line in f:
-        reviews.append(line.strip())
+reviews = ["Hey, the fellow travelers Mark here with Walters World and say we're here in Toronto, Canada."
+, "And today we're going to talk about are some of the domes that tours should know before they come to Toronto"
+, "so they can have a great time. And my first dump for you is don't add that second tee to Toronto"]
+# reviews = []
+# with open("Output.txt", "r") as f:
+#     for line in f:
+#         reviews.append(line.strip())
 # print(reviews)
 results = []
 
