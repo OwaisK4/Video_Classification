@@ -19,7 +19,6 @@ def blog(request):
     results_path = os.path.join(basepath, "Results")
     os.makedirs(results_path, exist_ok=True)
     results = os.listdir(results_path)
-    print(basepath)
     # print(results)
     context = {
         "files": results,
@@ -31,7 +30,7 @@ def get_link(query: str):
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.54 Safari/537.36",
     }
     query = query.replace(" ", "+")
-    query = f"toronto+{query}"
+    query = f"toronto+{query}+tripadvisor"
     target_url = f"https://www.google.com/search?q={query}"
     response = requests.get(target_url, headers=BASE_HEADERS)
     soup = bs4.BeautifulSoup(response.text, 'html.parser')
@@ -50,7 +49,6 @@ def blog_details(request, filename):
     os.makedirs(results_path, exist_ok=True)
     results = os.listdir(results_path)
     print(filename)
-    print(results)
     file = None
     for i in range(len(results)):
         if slugify(results[i]) == filename:
@@ -70,7 +68,8 @@ def blog_details(request, filename):
                 named_entities = [ne for ne in named_entities if ne.split()[-1] == "'Location'" and ne.split()[1].replace("'","").istitle()]
                 named_entity_links = []
                 for ne in named_entities:
-                    location = ne.split()[1].replace("'","")
+                    # location = ne.split()[1].replace("'","")
+                    location = ne.split("'")[1]
                     url = get_link(location)
                     if url:
                         print(url)

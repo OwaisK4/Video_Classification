@@ -215,7 +215,8 @@
           </div>
           <div class="col-lg-6">
             <div class="ud-blog-sidebar">
-              <div class="ud-newsletter-box">
+              {% comment %} <div class="ud-newsletter-box"> {% endcomment %}
+              <div>
                 <img
                   src="{% static 'assets/images/blog/dotted-shape.svg' %}"
                   alt="shape"
@@ -227,7 +228,7 @@
                   class="shape shape-2"
                 />
                 <h3 class="ud-newsletter-title">Location Entities</h3>
-                {% for ne in named_entities  %}
+                {% for ne in named_entities %}
                 <p>
                 {% if ne.url %}
                 <a href={{ ne.url }}>{{ ne.named_entity }}</a>

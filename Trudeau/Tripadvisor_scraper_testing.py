@@ -6,11 +6,13 @@ BASE_HEADERS = {
 }
 query = "toronto+chinatown"
 target_url = f"https://www.google.com/search?q={query}"
-response = requests.get(target_url, headers=BASE_HEADERS)
-soup = bs4.BeautifulSoup(response.text, 'html.parser')
-for link in soup.find_all('a', attrs={'href': re.compile("^https://")}): 
-    # display the actual urls 
-    print(link.get('href'))
+# response = requests.get(target_url, headers=BASE_HEADERS)
+# soup = bs4.BeautifulSoup(response.text, 'html.parser')
+# for link in soup.find_all('a', attrs={'href': re.compile("^https://")}): 
+#     # display the actual urls 
+#     print(link.get('href'))
+string = "Entity: 'Hockey Hall of Fame' has category 'Location'"
+print(string.split("'"))
 
 # hidden_data = re.findall(r"pageManifest:({.+?})};", response.text, re.DOTALL)[0]
 # hidden_data = json.loads(hidden_data)['urqlCache']['results']

@@ -143,7 +143,7 @@
             <div class="ud-single-blog">
               <div class="ud-blog-image">
                 <a href="{% url 'blog-details' file|slugify %}">
-                  <img src="{% static 'assets/images/blog/blog-01.jpg' %}" alt="blog" />
+                  <img src="{% static 'assets/images/blog/toronto.jpg' %}" alt="blog" />
                 </a>
               </div>
               <div class="ud-blog-content">
@@ -154,10 +154,10 @@
                     {% comment %} Meet AutoManage, the best AI management tools {% endcomment %}
                   </a>
                 </h3>
-                <p class="ud-blog-desc">
+                {% comment %} <p class="ud-blog-desc">
                   Lorem Ipsum is simply dummy text of the printing and
                   typesetting industry.
-                </p>
+                </p> {% endcomment %}
               </div>
             </div>
           </div>

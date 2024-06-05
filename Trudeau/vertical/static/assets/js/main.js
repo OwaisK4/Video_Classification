@@ -15,9 +15,9 @@
 
     // === logo change
     if (ud_header.classList.contains("sticky")) {
-      logo.src = "../images/logo/logo-2.svg";
+      logo.src = "/home/owaisk4/Win_backup/FAST NU assignments/Information Retrieval/Project/Video_Classification/Trudeau/vertical/static/assets/images/logo/logo-2.svg";
     } else {
-      logo.src = "../images/logo/logo.svg";
+      logo.src = "/home/owaisk4/Win_backup/FAST NU assignments/Information Retrieval/Project/Video_Classification/Trudeau/vertical/static/assets/images/logo/logo.svg";
     }
 
     // show or hide the back-top-top button
