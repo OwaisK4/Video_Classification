@@ -35,7 +35,6 @@ def googleRating(location,driver):
         res['no of people'] = temp[0]
     except:
         print('No rating found on google or network issue')
-    driver.quit()
     return res
 
 def description(location,driver):
@@ -59,7 +58,6 @@ def description(location,driver):
         res = description.text   
     except:
         print('No Description on google or network issue')
-    driver.quit()
     return res
 
 def tripadvisorRating(location,driver):
